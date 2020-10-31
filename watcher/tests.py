@@ -23,6 +23,26 @@ class TestNeighborhood(TestCase):
         self.neighborhood.deleteNeighborhood()
         neighborhood = Neighborhood.objects.all()
         self.assertTrue(len(neighborhood) == 0)
+        
+    def testFindNeighborhoodById(self):
+        neighborhood = Neighborhood.findNeighborhoodById(self.neighborhood.pk)
+        self.assertEqual(neighborhood, self.neighborhood)
+        
+    def testUpdateNeighborhood(self):
+        newName = 'Place C'
+        newLocation = 'Inside place C'
+        
+        Neighborhood.updateNeighborhood(self.neighborhood.id, newName, newLocation)
+        updatedNeighborhood = Neighborhood.findNeighborhoodById(self.neighborhood.id)
+        self.assertEqual(updatedNeighborhood.name,'Place C')
+        self.assertEqual(updatedNeighborhood.location,'Inside place C')
+        
+    def testUpdateOccupants(self):
+        newCount = 10
+        
+        Neighborhood.updateOccupantsCount(self.neighborhood.id, newCount)
+        updatedNeighborhood = Neighborhood.findNeighborhoodById(self.neighborhood.id)
+        self.assertEqual(updatedNeighborhood.occupationCount, 10)
 
 
 class TestProfile(TestCase):
@@ -75,3 +95,16 @@ class TestBusiness(TestCase):
         self.business.deleteBusiness()
         business = Business.objects.all()
         self.assertTrue(len(business) == 0)
+        
+    def testFindBusinessById(self):
+        business = Business.findBusinessById(self.business.pk)
+        self.assertEqual(business, self.business)
+        
+    def testUpdateBusiness(self):
+        newName = 'Ooliskia Wapi'
+        newEmail = 'nimeskia@business.com'
+        
+        Business.updateBusiness(self.business.id, newName, newEmail)
+        updatedBusiness = Business.findBusinessById(self.business.id)
+        self.assertEqual(updatedBusiness.name, 'Ooliskia Wapi')
+        self.assertEqual(updatedBusiness.email, 'nimeskia@business.com')
