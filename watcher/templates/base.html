@@ -12,10 +12,12 @@
     {% endif %} 
 
     {% block styles %}
-      {% bootstrap_css %} 
+      {% bootstrap_css %}
+      <link rel="stylesheet" href="{% static 'css/main.css' %}" />
     {% endblock %}
   </head>
   <body>
+    {% include 'partials/navbar.html' %}
     {% block content %}
     {% endblock %}
   
