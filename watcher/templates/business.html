@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+{{block.super}}
+{% block styles %}
+  <link rel="stylesheet" href="{% static 'css/business.css' %}" />
+  <script src="https://kit.fontawesome.com/7b7df4a8c9.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+{% endblock %}
+
+<section class="container">
+  <!-- Header -->
+  <header class="w3-container w3-black w3-opacity w3-center index-header">
+    <div class="w3-margin w3-jumbo">
+      <h4>Register your business below</h4>
+      <div class="formDiv">
+        <form id="businessPost" method="POST">
+          {% csrf_token %}
+          <div class="w3-margin form-group row">
+            <label for="name" class="col-sm-2 col-form-label w3-xlarge">Name</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="name" name="businessName" placeholder="Name">
+            </div>
+          </div>
+          <div class="w3-margin form-group row">
+            <label for="mail" class="col-sm-2 col-form-label w3-xlarge">Email</label>
+            <div class="col-sm-10">
+              <input type="email" class="form-control" id="mail" name="businessEmail" placeholder="Email">
+            </div>
+          </div>
+          <div class="col-sm-8">
+          <button type="submit" class="btn btn-lg btn-primary w3-cyan float-right mb-4">Submit</button>
+          </div>
+        </form>     
+      </div>
+    </div>
+
+  </header>
+
+<div class="w3-row-padding w3-padding-48 w3-container">
+  <div class="w3-content">
+    <h1 class="text-center">Neighborhood's Businesses</h1>
+
+      <div class="">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Name</th>
+              <th scope="col">Owner</th>
+              <th scope="col">Email</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for business in businesses%}
+              <tr>
+                <td scope="row"></td>
+                <td>{{ business.name }}</td>
+                <td>{{ business.user }}</td>
+                <td>{{ business.email }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+  </div>
+</div>
+
+{% block scripts %}
+  <script src="{% static 'js/main.js' %}"></script>
+{% endblock %}
+
+{% endblock %}
