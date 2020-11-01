@@ -80,7 +80,7 @@ class Business(models.Model):
     email = models.EmailField(max_length=150)
 
     def __str__(self):
-        self.name
+        return self.name
 
     def saveBusniess(self):
         self.save()
@@ -106,3 +106,10 @@ class Business(models.Model):
         else:
             message = "Business does not exist"
             return message
+
+
+class Post(models.Model):
+  tag = models.CharField(max_length=20)
+  details = models.TextField(max_length=500)
+  user = models.ForeignKey(User, null=True, on_delete=CASCADE)
+  neighborhood = models.ForeignKey(Neighborhood, null=True, on_delete=models.CASCADE)
