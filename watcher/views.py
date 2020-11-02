@@ -1,4 +1,5 @@
 from watcher.models import Business, Neighborhood, Post, Profile
+from django.contrib.auth.decorators import login_required
 from django.http import request
 from django.shortcuts import render
 
@@ -7,6 +8,10 @@ def logout(request):
     logout(request)
 
 
+def welcome(request):
+  return render(request, 'welcome.html')
+
+@login_required(login_url="/accounts/login/")
 def index(request):
     profile = Profile.objects.get(user=request.user)
     posts = Post.objects.filter(neighborhood=profile.neighborhood)
@@ -26,14 +31,14 @@ def index(request):
     context = {"profile": profile, "posts": posts}
     return render(request, "index.html", context)
 
-
+@login_required(login_url="/accounts/login/")
 def profile(request):
     profile = Profile.objects.get(user=request.user)
 
     context = {"profile": profile}
     return render(request, "profile.html", context)
 
-
+@login_required(login_url="/accounts/login/")
 def business(request):
     profile = Profile.objects.get(user=request.user)
     businesses = Business.objects.filter(neighborhood=profile.neighborhood)

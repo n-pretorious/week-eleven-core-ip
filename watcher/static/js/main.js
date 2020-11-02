@@ -4,7 +4,7 @@ function submitPost() {
         form = $("#postForm")
 
         $.ajax({
-            'path': '/',
+            'path': 'hood',
             'type': 'POST',
             'data': form.serialize(),
             'dataType': 'json',

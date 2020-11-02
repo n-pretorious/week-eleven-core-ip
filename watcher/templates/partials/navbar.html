@@ -13,13 +13,16 @@
     <div class="w3-bar w3-light-grey w3-card w3-left-align">
       <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
       <span class="float-left">
-        <a href="{% url 'index'%}" class="w3-bar-item w3-button w3-padding-large w3-hover-white">Home</a>
+        <a href="{% url 'welcome'%}" class="w3-bar-item w3-button w3-padding-large w3-hover-white">Hoodwatch</a>
       </span>
       <span class="float-right">
-        <a href="{% url 'logout'%}" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Logout</a>
-        <a href="{% url 'login'%}" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Login</a>
-        <a href="{% url 'django_registration_register'%}" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Registration</a>
+        {% if user.is_authenticated %}
+        <a href="{% url 'index'%}" class="w3-bar-item w3-button w3-padding-large w3-hover-white">Neighborhood</a>
         <a href="{% url 'userProfile'%}" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Profile</a>
+        <a href="{% url 'logout'%}" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Logout</a>
+        {% else %}
+        <a href="{% url 'login'%}" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Login</a>
+        {% endif %}
       </span>
     </div>
 
