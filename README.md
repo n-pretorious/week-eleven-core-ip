@@ -87,7 +87,6 @@ You can now run the development server:
 | :------------- | :------------- | :--------------- |
 | User updates profile | New detail | Profile updates |
 | User posts a post | Post| Post is displayed |
-| User clicks rate | Button clicked | Form to submit rating toggles|
 | User posts his business |  Business post | Posts appear in the business route |
 
 
