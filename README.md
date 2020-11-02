@@ -1,5 +1,5 @@
 # Neighborhood watch
-This is an awarding site. A user gets to grade projects posted.
+A web app that helps you stay in touch with your neighborhood.
 
 
 ## Core Features
